@@ -2,15 +2,15 @@ create table public.shops (
 	shop_id SERIAL PRIMARY KEY NOT NULL,
     title character varying(50) NOT NULL,
     location_area character varying(50) NOT NULL,
-    сommission integer NOT NULL
+    commission integer NOT NULL
 );
 
 Select * From shops;
 
-INSERT INTO public.shops(title, location_area, сommission)
+INSERT INTO public.shops(title, location_area, commission)
 	VALUES ('Domovik','Poltavskaya 32', 10);
-
-
+	
+	
 create table public.customers (
 	customer_id SERIAL PRIMARY KEY NOT NULL,
 	last_name character varying(50) NOT NULL,
@@ -24,7 +24,7 @@ INSERT INTO public.customers( last_name, area_of_residence, discount)
 	VALUES ('Gudima', 'Poltavskaya 47', 15);
 INSERT INTO public.customers( last_name, area_of_residence, discount)
 	VALUES ('Kulagina', 'Poltavskaya 47', 10);
-
+	
 create table public.books (
 	book_id SERIAL PRIMARY KEY NOT NULL,
 	title character varying(50) NOT NULL,
@@ -36,10 +36,10 @@ create table public.books (
 Select * From books;
 INSERT INTO public.books( title, price, stock, quantity)
 	VALUES ('a', 100, 'stockNN', 11);
-
+	
 INSERT INTO public.books( title, price, stock, quantity)
 	VALUES ('b', 200, 'stockNN', 32);
-
+	
 INSERT INTO public.books( title, price, stock, quantity)
 	VALUES ('c', 300, 'stockMCK', 6);
 
@@ -59,3 +59,7 @@ INSERT INTO public.purchases(purchase_date, shop_id, customer_id, book_id, quant
 	VALUES ('2022-01-04', 1, 1, 1, 2, 200);
 INSERT INTO public.purchases(purchase_date, shop_id, customer_id, book_id, quantity, purchase_amount)
 	VALUES ('2022-01-04', 1, 2, 1, 1, 100);
+	
+UPDATE public.books
+	SET book_id=11
+	WHERE book_id=1;
