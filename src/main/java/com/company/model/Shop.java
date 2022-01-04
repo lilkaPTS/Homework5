@@ -15,14 +15,14 @@ public class Shop {
     private String title;
     @Column(name = "location_area")
     private String locationArea;
-    private Integer commission;
+    private int commission;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
     private Collection<Purchase> purchases;
 
     public Shop() {}
 
-    public Shop(int shopId, String title, String locationArea, Integer commission) {
+    public Shop(int shopId, String title, String locationArea, int commission) {
         this.shopId = shopId;
         this.title = title;
         this.locationArea = locationArea;
@@ -53,11 +53,11 @@ public class Shop {
         this.locationArea = locationArea;
     }
 
-    public Integer getCommission() {
+    public int getCommission() {
         return commission;
     }
 
-    public void setCommission(Integer commission) {
+    public void setCommission(int commission) {
         this.commission = commission;
     }
 
@@ -66,12 +66,12 @@ public class Shop {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shop shop = (Shop) o;
-        return shopId == shop.shopId && title.equals(shop.title) && locationArea.equals(shop.locationArea) && commission.equals(shop.commission);
+        return shopId == shop.shopId && commission == shop.commission && title.equals(shop.title) && locationArea.equals(shop.locationArea) && purchases.equals(shop.purchases);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shopId, title, locationArea, commission);
+        return Objects.hash(shopId, title, locationArea, commission, purchases);
     }
 
     @Override
