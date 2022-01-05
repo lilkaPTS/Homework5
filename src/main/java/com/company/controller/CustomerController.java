@@ -1,13 +1,11 @@
 package com.company.controller;
 
+import com.company.model.Book;
 import com.company.model.Customer;
 import com.company.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,5 +25,10 @@ public class CustomerController {
     @GetMapping("/customers/{customerId}")
     public ResponseEntity<Optional<Customer>> getCustomerById(@PathVariable(value = "customerId") Integer customerId) {
         return repository.findById(customerId).isPresent() ? ResponseEntity.ok(repository.findById(customerId)) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/customers")
+    public Customer createCustomer(@RequestBody Customer customer) {
+        return repository.save(customer);
     }
 }
