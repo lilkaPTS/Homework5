@@ -1,12 +1,10 @@
 package com.company.service;
 
-import com.company.model.Book;
 import com.company.model.Customer;
 import com.company.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;

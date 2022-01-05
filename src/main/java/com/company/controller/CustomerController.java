@@ -1,8 +1,6 @@
 package com.company.controller;
 
-import com.company.model.Book;
 import com.company.model.Customer;
-import com.company.repository.CustomerRepository;
 import com.company.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

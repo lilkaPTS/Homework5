@@ -17,19 +17,6 @@ public class Purchase {
     @Column(name = "purchase_date")
     private Date purchaseDate;
 
-
-    /*@ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @MapsId
-    @JoinColumn(name = "shop_id")
-    private Shop shop;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @MapsId
-    @JoinColumn(name = "book_id")
-    private Book book;*/
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

@@ -1,6 +1,5 @@
 package com.company.controller;
 
-import com.company.model.Customer;
 import com.company.model.Purchase;
 import com.company.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -43,14 +43,11 @@ public class PurchaseService {
         Optional<Book> book = bookRepository.findById(bookId);
         if(!shop.isPresent()) {
             status.append("There is no store with id = ").append(shopId).append("\t");
-        }
-        if(!customer.isPresent()) {
+        } else if(!customer.isPresent()) {
             status.append("There is no customer with id = ").append(customerId).append("\t");
-        }
-        if(!book.isPresent()) {
+        } else if(!book.isPresent()) {
             status.append("There is no book with id = ").append(bookId).append("\t");
-        }
-        if(shop.isPresent() && customer.isPresent() && book.isPresent()) {
+        } else {
             Purchase purchase = new Purchase(purchaseDate, shop.get(), customer.get(), book.get(), quantity, book.get().getPrice()*quantity);
             purchaseRepository.save(purchase);
             status.append("Purchase made!");
@@ -99,7 +96,6 @@ public class PurchaseService {
                 purchase.setBook(bookRepository.findById(bookId).get());
                 purchase.setQuantity(quantity);
                 purchase.setPurchaseAmount(bookRepository.findById(bookId).get().getPrice()*quantity);
-
                 purchaseRepository.save(purchase);
                 status.append("Purchase made!");
             }

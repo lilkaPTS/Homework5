@@ -1,15 +1,11 @@
 package com.company.controller;
 
-import com.company.model.Customer;
-import com.company.model.Purchase;
 import com.company.model.Shop;
-import com.company.repository.ShopRepository;
 import com.company.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
