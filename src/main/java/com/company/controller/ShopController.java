@@ -39,4 +39,8 @@ public class ShopController {
         return service.delete(shopId);
     }
 
+    @PatchMapping("/shops")
+    public String updateCustomer(@RequestParam Integer shopId, @RequestParam String locationArea) {
+        return service.update(shopId, locationArea);
+    }
 }

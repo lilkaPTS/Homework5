@@ -7,12 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BookService {
+
     @Autowired
     private BookRepository repository;
 
@@ -33,6 +35,28 @@ public class BookService {
         if(repository.findById(bookId).isPresent()) {
             repository.deleteById(bookId);
             status.append("Removal was successful");
+        } else {
+            status.append("Book with index ").append(bookId).append(" not found");
+        }
+        return status.toString();
+    }
+
+    public String update(Integer bookId, Integer price, Integer quantity) {
+        StringBuilder status = new StringBuilder();
+        if(repository.findById(bookId).isPresent()) {
+            Book book = repository.findById(bookId).get();
+            if(price != null) {
+                book.setPrice(price);
+            }
+            if(quantity != null) {
+                book.setQuantity(quantity);
+            }
+            repository.save(book);
+            if(price == null && quantity == null){
+                status.append("All fields remain unchanged");
+            } else {
+                status.append("Update was successful");
+            }
         } else {
             status.append("Book with index ").append(bookId).append(" not found");
         }

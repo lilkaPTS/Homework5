@@ -6,6 +6,7 @@ import com.company.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,19 @@ public class CustomerService {
         if(repository.findById(customerId).isPresent()) {
             repository.deleteById(customerId);
             status.append("Removal was successful");
+        } else {
+            status.append("Customer with index ").append(customerId).append(" not found");
+        }
+        return status.toString();
+    }
+
+    public String update(Integer customerId, Integer discount) {
+        StringBuilder status = new StringBuilder();
+        if(repository.findById(customerId).isPresent()) {
+            Customer customer = repository.findById(customerId).get();
+            customer.setDiscount(discount);
+            repository.save(customer);
+            status.append("Update was successful");
         } else {
             status.append("Customer with index ").append(customerId).append(" not found");
         }

@@ -69,4 +69,17 @@ public class PurchaseService {
         return status.toString();
     }
 
+    public String update(Integer purchaseId, Integer quantity) {
+        StringBuilder status = new StringBuilder();
+        if(purchaseRepository.findById(purchaseId).isPresent()) {
+            Purchase purchase = purchaseRepository.findById(purchaseId).get();
+            purchase.setQuantity(quantity);
+            purchaseRepository.save(purchase);
+            status.append("Update was successful");
+        } else {
+            status.append("Purchase with index ").append(purchaseId).append(" not found");
+        }
+        return status.toString();
+    }
+
 }

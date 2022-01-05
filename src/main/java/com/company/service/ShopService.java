@@ -1,12 +1,14 @@
 package com.company.service;
 
 import com.company.model.Book;
+import com.company.model.Customer;
 import com.company.model.Shop;
 import com.company.repository.BookRepository;
 import com.company.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +36,19 @@ public class ShopService {
         if(repository.findById(shopId).isPresent()) {
             repository.deleteById(shopId);
             status.append("Removal was successful");
+        } else {
+            status.append("Shop with index ").append(shopId).append(" not found");
+        }
+        return status.toString();
+    }
+
+    public String update(Integer shopId, String locationArea) {
+        StringBuilder status = new StringBuilder();
+        if(repository.findById(shopId).isPresent()) {
+            Shop shop = repository.findById(shopId).get();
+            shop.setLocationArea(locationArea);
+            repository.save(shop);
+            status.append("Update was successful");
         } else {
             status.append("Shop with index ").append(shopId).append(" not found");
         }

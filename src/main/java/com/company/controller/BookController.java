@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,11 @@ public class BookController {
     @DeleteMapping("/books/{bookId}")
     public String deleteBook(@PathVariable(value = "bookId") Integer bookId) {
         return service.delete(bookId);
+    }
+
+    @PatchMapping("/books")
+    public String updateBook(@RequestParam Integer bookId, @RequestParam(required = false) Integer price, @RequestParam(required = false) Integer quantity) {
+        return service.update(bookId, price, quantity);
     }
 
 }

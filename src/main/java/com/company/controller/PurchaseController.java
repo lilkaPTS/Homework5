@@ -36,4 +36,9 @@ public class PurchaseController {
     public String deletePurchase(@PathVariable(value = "purchaseId") Integer purchaseId) {
         return service.delete(purchaseId);
     }
+
+    @PatchMapping("/purchases")
+    public String updateCustomer(@RequestParam Integer purchaseId, @RequestParam Integer quantity) {
+        return service.update(purchaseId, quantity);
+    }
 }

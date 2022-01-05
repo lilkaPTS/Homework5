@@ -38,4 +38,9 @@ public class CustomerController {
         return service.delete(customerId);
     }
 
+    @PatchMapping("/customers")
+    public String updateCustomer(@RequestParam Integer customerId, @RequestParam Integer discount) {
+        return service.update(customerId, discount);
+    }
+
 }
