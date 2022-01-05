@@ -1,14 +1,11 @@
 package com.company.controller;
 
 import com.company.model.Book;
-import com.company.repository.BookRepository;
+import com.company.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.webjars.NotFoundException;
 
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,22 +15,26 @@ import java.util.Optional;
 public class BookController {
 
     @Autowired
-    private BookRepository repository;
+    private BookService service;
 
     @GetMapping("/books")
     public List<Book> getAllBook(){
-        return repository.findAll();
+        return service.getAll();
     }
 
     @GetMapping("/books/{bookId}")
     public ResponseEntity<Optional<Book>> getBookById(@PathVariable(value = "bookId") Integer bookId) {
-        return repository.findById(bookId).isPresent() ? ResponseEntity.ok(repository.findById(bookId)) : ResponseEntity.notFound().build();
+        return service.getById(bookId);
     }
 
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book) {
-        return repository.save(book);
+        return service.create(book);
     }
 
+    @DeleteMapping("/books/{bookId}")
+    public String deleteBook(@PathVariable(value = "bookId") Integer bookId) {
+        return service.delete(bookId);
+    }
 
 }

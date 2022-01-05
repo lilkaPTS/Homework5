@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.model.Book;
 import com.company.model.Customer;
 import com.company.repository.CustomerRepository;
+import com.company.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,20 +16,26 @@ import java.util.Optional;
 public class CustomerController {
 
     @Autowired
-    private CustomerRepository repository;
+    private CustomerService service;
 
     @GetMapping("/customers")
     public List<Customer> getAllCustomer(){
-        return repository.findAll();
+        return service.getAll();
     }
 
     @GetMapping("/customers/{customerId}")
     public ResponseEntity<Optional<Customer>> getCustomerById(@PathVariable(value = "customerId") Integer customerId) {
-        return repository.findById(customerId).isPresent() ? ResponseEntity.ok(repository.findById(customerId)) : ResponseEntity.notFound().build();
+        return service.getById(customerId);
     }
 
     @PostMapping("/customers")
     public Customer createCustomer(@RequestBody Customer customer) {
-        return repository.save(customer);
+        return service.create(customer);
     }
+
+    @DeleteMapping("/customers/{customerId}")
+    public String deleteCustomer(@PathVariable(value = "customerId") Integer customerId) {
+        return service.delete(customerId);
+    }
+
 }
