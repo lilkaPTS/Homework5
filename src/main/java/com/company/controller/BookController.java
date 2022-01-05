@@ -43,4 +43,8 @@ public class BookController {
         return service.update(bookId, price, quantity);
     }
 
+    @PutMapping("/books")
+    public String overwriteBook(@RequestBody Book book) {
+        return service.overwrite(book);
+    }
 }

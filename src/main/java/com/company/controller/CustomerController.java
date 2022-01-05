@@ -43,4 +43,9 @@ public class CustomerController {
         return service.update(customerId, discount);
     }
 
+    @PutMapping("/customers")
+    public String overwriteBook(@RequestBody Customer customer) {
+        return service.overwrite(customer);
+    }
+
 }

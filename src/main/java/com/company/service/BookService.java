@@ -62,4 +62,15 @@ public class BookService {
         }
         return status.toString();
     }
+
+    public String overwrite(Book obj) {
+        StringBuilder status = new StringBuilder();
+        if(repository.findById(obj.getBookId()).isPresent()) {
+            repository.save(obj);
+            status.append("Update was successful");
+        } else {
+            status.append("Book with index ").append(obj.getBookId()).append(" not found");
+        }
+        return status.toString();
+    }
 }

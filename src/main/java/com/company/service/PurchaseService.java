@@ -82,4 +82,31 @@ public class PurchaseService {
         return status.toString();
     }
 
+    public String overwrite(Integer purchaseId, Date purchaseDate, Integer shopId, Integer customerId, Integer bookId, Integer quantity) {
+        StringBuilder status = new StringBuilder();
+        if(purchaseRepository.findById(purchaseId).isPresent()) {
+            if(!shopRepository.findById(shopId).isPresent()) {
+                status.append("There is no store with id = ").append(shopId).append("\t");
+            } else if(!customerRepository.findById(customerId).isPresent()) {
+                status.append("There is no customer with id = ").append(customerId).append("\t");
+            } else if(!bookRepository.findById(bookId).isPresent()) {
+                status.append("There is no book with id = ").append(bookId).append("\t");
+            } else {
+                Purchase purchase = purchaseRepository.findById(purchaseId).get();
+                purchase.setPurchaseDate(purchaseDate);
+                purchase.setShop(shopRepository.findById(shopId).get());
+                purchase.setCustomer(customerRepository.findById(customerId).get());
+                purchase.setBook(bookRepository.findById(bookId).get());
+                purchase.setQuantity(quantity);
+                purchase.setPurchaseAmount(bookRepository.findById(bookId).get().getPrice()*quantity);
+
+                purchaseRepository.save(purchase);
+                status.append("Purchase made!");
+            }
+        } else {
+            status.append("Purchase with index ").append(purchaseId).append(" not found");
+        }
+        return status.toString();
+    }
+
 }

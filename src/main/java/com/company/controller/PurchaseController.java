@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.model.Customer;
 import com.company.model.Purchase;
 import com.company.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class PurchaseController {
     @PatchMapping("/purchases")
     public String updateCustomer(@RequestParam Integer purchaseId, @RequestParam Integer quantity) {
         return service.update(purchaseId, quantity);
+    }
+
+    @PutMapping("/purchases")
+    public String overwriteBook(@RequestParam Integer purchaseId,@RequestParam Date purchaseDate, @RequestParam Integer shopId, @RequestParam Integer customerId, @RequestParam Integer bookId, @RequestParam Integer quantity) {
+        return service.overwrite(purchaseId, purchaseDate, shopId, customerId, bookId, quantity);
     }
 }

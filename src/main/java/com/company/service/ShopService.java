@@ -54,4 +54,15 @@ public class ShopService {
         }
         return status.toString();
     }
+
+    public String overwrite(Shop obj) {
+        StringBuilder status = new StringBuilder();
+        if(repository.findById(obj.getShopId()).isPresent()) {
+            repository.save(obj);
+            status.append("Update was successful");
+        } else {
+            status.append("Shop with index ").append(obj.getShopId()).append(" not found");
+        }
+        return status.toString();
+    }
 }

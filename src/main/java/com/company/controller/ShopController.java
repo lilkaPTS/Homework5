@@ -43,4 +43,9 @@ public class ShopController {
     public String updateCustomer(@RequestParam Integer shopId, @RequestParam String locationArea) {
         return service.update(shopId, locationArea);
     }
+
+    @PutMapping("/shops")
+    public String overwriteBook(@RequestBody Shop shop) {
+        return service.overwrite(shop);
+    }
 }

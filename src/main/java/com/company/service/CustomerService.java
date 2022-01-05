@@ -52,4 +52,15 @@ public class CustomerService {
         }
         return status.toString();
     }
+
+    public String overwrite(Customer obj) {
+        StringBuilder status = new StringBuilder();
+        if(repository.findById(obj.getCustomerId()).isPresent()) {
+            repository.save(obj);
+            status.append("Update was successful");
+        } else {
+            status.append("Customer with index ").append(obj.getCustomerId()).append(" not found");
+        }
+        return status.toString();
+    }
 }
