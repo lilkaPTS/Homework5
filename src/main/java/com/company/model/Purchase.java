@@ -52,8 +52,7 @@ public class Purchase {
 
     public Purchase(){}
 
-    public Purchase(int purchaseId, Date purchaseDate, Shop shop, Customer customer, Book book, int quantity, int purchaseAmount) {
-        this.purchaseId = purchaseId;
+    public Purchase(Date purchaseDate, Shop shop, Customer customer, Book book, int quantity, int purchaseAmount) {
         this.purchaseDate = purchaseDate;
         this.shop = shop;
         this.customer = customer;

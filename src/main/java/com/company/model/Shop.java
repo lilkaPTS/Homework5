@@ -22,8 +22,7 @@ public class Shop {
 
     public Shop() {}
 
-    public Shop(int shopId, String title, String locationArea, int commission) {
-        this.shopId = shopId;
+    public Shop(String title, String locationArea, int commission) {
         this.title = title;
         this.locationArea = locationArea;
         this.commission = commission;

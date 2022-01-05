@@ -21,8 +21,7 @@ public class Book {
 
     public Book() {}
 
-    public Book(int bookId, String title, int price, String stock, int quantity) {
-        this.bookId = bookId;
+    public Book(String title, int price, String stock, int quantity) {
         this.title = title;
         this.price = price;
         this.stock = stock;
