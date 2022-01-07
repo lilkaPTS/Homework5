@@ -16,8 +16,8 @@ public class Book {
     private String stock;
     private int quantity;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
-    private Collection<Purchase> purchases;
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+    private Collection<Purchase> purchases;*/
 
     public Book() {}
 

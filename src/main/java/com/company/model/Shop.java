@@ -17,8 +17,8 @@ public class Shop {
     private String locationArea;
     private int commission;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
-    private Collection<Purchase> purchases;
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "shop")
+    private Collection<Purchase> purchases;*/
 
     public Shop() {}
 
@@ -65,12 +65,12 @@ public class Shop {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shop shop = (Shop) o;
-        return shopId == shop.shopId && commission == shop.commission && title.equals(shop.title) && locationArea.equals(shop.locationArea) && purchases.equals(shop.purchases);
+        return shopId == shop.shopId && commission == shop.commission && title.equals(shop.title) && locationArea.equals(shop.locationArea);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shopId, title, locationArea, commission, purchases);
+        return Objects.hash(shopId, title, locationArea, commission);
     }
 
     @Override

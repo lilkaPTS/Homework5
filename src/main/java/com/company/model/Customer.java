@@ -18,8 +18,8 @@ public class Customer {
     private String areaOfResidence;
     private int discount;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private Collection<Purchase> purchases;
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    private Collection<Purchase> purchases;*/
 
     public Customer(){}
 
