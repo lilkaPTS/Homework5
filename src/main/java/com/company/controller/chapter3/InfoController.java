@@ -19,8 +19,6 @@ public class InfoController {
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
-    private PurchaseRepository purchaseRepository;
-    @Autowired
     private ShopRepository shopRepository;
 
     @GetMapping("/customers")
