@@ -1,4 +1,4 @@
-package com.company.controller;
+package com.company.controller.chapter1;
 
 import com.company.model.Purchase;
 import com.company.service.PurchaseService;

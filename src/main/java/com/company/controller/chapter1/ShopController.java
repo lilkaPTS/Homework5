@@ -1,4 +1,4 @@
-package com.company.controller;
+package com.company.controller.chapter1;
 
 import com.company.model.Shop;
 import com.company.service.ShopService;

@@ -1,4 +1,4 @@
-package com.company.controller;
+package com.company.controller.chapter2;
 
 import com.company.repository.BookRepository;
 import com.company.repository.CustomerRepository;
