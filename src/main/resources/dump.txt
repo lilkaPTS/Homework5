@@ -1,0 +1,376 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
+
+-- Started on 2022-01-08 14:17:42
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 205 (class 1259 OID 32896)
+-- Name: books; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.books (
+    book_id integer NOT NULL,
+    title character varying(50) NOT NULL,
+    price integer NOT NULL,
+    stock character varying(50) NOT NULL,
+    quantity integer NOT NULL
+);
+
+
+ALTER TABLE public.books OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 32894)
+-- Name: books_book_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.books_book_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.books_book_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3026 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: books_book_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.books_book_id_seq OWNED BY public.books.book_id;
+
+
+--
+-- TOC entry 203 (class 1259 OID 32888)
+-- Name: customers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.customers (
+    customer_id integer NOT NULL,
+    last_name character varying(50) NOT NULL,
+    area_of_residence character varying(50) NOT NULL,
+    discount integer NOT NULL
+);
+
+
+ALTER TABLE public.customers OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 32886)
+-- Name: customers_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.customers_customer_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.customers_customer_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3027 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: customers_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.customers_customer_id_seq OWNED BY public.customers.customer_id;
+
+
+--
+-- TOC entry 207 (class 1259 OID 32927)
+-- Name: purchases; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.purchases (
+    purchase_id integer NOT NULL,
+    purchase_date date NOT NULL,
+    shop_id integer NOT NULL,
+    customer_id integer NOT NULL,
+    book_id integer NOT NULL,
+    quantity integer NOT NULL,
+    purchase_amount integer NOT NULL
+);
+
+
+ALTER TABLE public.purchases OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 32925)
+-- Name: purchases_purchase_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.purchases_purchase_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.purchases_purchase_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3028 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: purchases_purchase_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.purchases_purchase_id_seq OWNED BY public.purchases.purchase_id;
+
+
+--
+-- TOC entry 201 (class 1259 OID 32880)
+-- Name: shops; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.shops (
+    shop_id integer NOT NULL,
+    title character varying(50) NOT NULL,
+    location_area character varying(50) NOT NULL,
+    commission integer NOT NULL
+);
+
+
+ALTER TABLE public.shops OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 32878)
+-- Name: shops_shop_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.shops_shop_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.shops_shop_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3029 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: shops_shop_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.shops_shop_id_seq OWNED BY public.shops.shop_id;
+
+
+--
+-- TOC entry 2870 (class 2604 OID 32899)
+-- Name: books book_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.books ALTER COLUMN book_id SET DEFAULT nextval('public.books_book_id_seq'::regclass);
+
+
+--
+-- TOC entry 2869 (class 2604 OID 32891)
+-- Name: customers customer_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers ALTER COLUMN customer_id SET DEFAULT nextval('public.customers_customer_id_seq'::regclass);
+
+
+--
+-- TOC entry 2871 (class 2604 OID 32930)
+-- Name: purchases purchase_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchases ALTER COLUMN purchase_id SET DEFAULT nextval('public.purchases_purchase_id_seq'::regclass);
+
+
+--
+-- TOC entry 2868 (class 2604 OID 32883)
+-- Name: shops shop_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.shops ALTER COLUMN shop_id SET DEFAULT nextval('public.shops_shop_id_seq'::regclass);
+
+
+--
+-- TOC entry 3018 (class 0 OID 32896)
+-- Dependencies: 205
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.books (book_id, title, price, stock, quantity) VALUES (3, 'b', 200, 'stockMCK', 4);
+INSERT INTO public.books (book_id, title, price, stock, quantity) VALUES (10, 'dasdWindowsdsa', 400, 'stockNN', 66);
+INSERT INTO public.books (book_id, title, price, stock, quantity) VALUES (7, 'c', 300, 'Avtozavodskij', 6);
+INSERT INTO public.books (book_id, title, price, stock, quantity) VALUES (2, 'a', 100, 'Sovetskij', 32);
+INSERT INTO public.books (book_id, title, price, stock, quantity) VALUES (11, 'e', 23234, 'Sovetskij', 55);
+
+
+--
+-- TOC entry 3016 (class 0 OID 32888)
+-- Dependencies: 203
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.customers (customer_id, last_name, area_of_residence, discount) VALUES (2, 'Kulagina', 'Avtozavodskij', 10);
+INSERT INTO public.customers (customer_id, last_name, area_of_residence, discount) VALUES (4, 'Yudin', 'Nizhegorodskij', 11);
+INSERT INTO public.customers (customer_id, last_name, area_of_residence, discount) VALUES (5, 'Koromyslov', 'Nizhegorodskij', 13);
+INSERT INTO public.customers (customer_id, last_name, area_of_residence, discount) VALUES (3, 'Vojnov', 'Sovetskij', 9);
+INSERT INTO public.customers (customer_id, last_name, area_of_residence, discount) VALUES (1, 'Gudima', 'Sovetskij', 14);
+
+
+--
+-- TOC entry 3020 (class 0 OID 32927)
+-- Dependencies: 207
+-- Data for Name: purchases; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.purchases (purchase_id, purchase_date, shop_id, customer_id, book_id, quantity, purchase_amount) VALUES (10, '2022-03-07', 2, 3, 2, 4, 800);
+INSERT INTO public.purchases (purchase_id, purchase_date, shop_id, customer_id, book_id, quantity, purchase_amount) VALUES (12, '2021-10-11', 1, 3, 11, 5, 116170);
+INSERT INTO public.purchases (purchase_id, purchase_date, shop_id, customer_id, book_id, quantity, purchase_amount) VALUES (11, '2020-05-03', 4, 1, 11, 3, 69702);
+INSERT INTO public.purchases (purchase_id, purchase_date, shop_id, customer_id, book_id, quantity, purchase_amount) VALUES (5, '2022-07-10', 1, 1, 2, 11, 1200);
+INSERT INTO public.purchases (purchase_id, purchase_date, shop_id, customer_id, book_id, quantity, purchase_amount) VALUES (6, '2022-01-06', 4, 2, 7, 4, 1332);
+
+
+--
+-- TOC entry 3014 (class 0 OID 32880)
+-- Dependencies: 201
+-- Data for Name: shops; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.shops (shop_id, title, location_area, commission) VALUES (1, 'Domovik', 'Sovetskij', 10);
+INSERT INTO public.shops (shop_id, title, location_area, commission) VALUES (2, 'Kivomod', 'Sormovskij', 11);
+INSERT INTO public.shops (shop_id, title, location_area, commission) VALUES (3, 'Vokido', 'Sovetskij', 12);
+INSERT INTO public.shops (shop_id, title, location_area, commission) VALUES (4, 'Kidomov', 'Avtozavodskij', 15);
+
+
+--
+-- TOC entry 3030 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: books_book_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.books_book_id_seq', 11, true);
+
+
+--
+-- TOC entry 3031 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: customers_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.customers_customer_id_seq', 5, true);
+
+
+--
+-- TOC entry 3032 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: purchases_purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.purchases_purchase_id_seq', 12, true);
+
+
+--
+-- TOC entry 3033 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: shops_shop_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.shops_shop_id_seq', 4, true);
+
+
+--
+-- TOC entry 2877 (class 2606 OID 32901)
+-- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.books
+    ADD CONSTRAINT books_pkey PRIMARY KEY (book_id);
+
+
+--
+-- TOC entry 2875 (class 2606 OID 32893)
+-- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (customer_id);
+
+
+--
+-- TOC entry 2879 (class 2606 OID 32932)
+-- Name: purchases purchases_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchases
+    ADD CONSTRAINT purchases_pkey PRIMARY KEY (purchase_id);
+
+
+--
+-- TOC entry 2873 (class 2606 OID 32885)
+-- Name: shops shops_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.shops
+    ADD CONSTRAINT shops_pkey PRIMARY KEY (shop_id);
+
+
+--
+-- TOC entry 2882 (class 2606 OID 32943)
+-- Name: purchases purchases_book_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchases
+    ADD CONSTRAINT purchases_book_id_fkey FOREIGN KEY (book_id) REFERENCES public.books(book_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2881 (class 2606 OID 32938)
+-- Name: purchases purchases_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchases
+    ADD CONSTRAINT purchases_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES public.customers(customer_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2880 (class 2606 OID 32933)
+-- Name: purchases purchases_shop_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchases
+    ADD CONSTRAINT purchases_shop_id_fkey FOREIGN KEY (shop_id) REFERENCES public.shops(shop_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2022-01-08 14:17:42
+
+--
+-- PostgreSQL database dump complete
+--
+
